@@ -1,0 +1,24 @@
+Django>=4.2, <4.3
+djangorestframework>=3.14, <3.15
+uWSGI
+mysqlclient
+python-dotenv
+django-configurations
+pytz
+drf-spectacular
+
+# test
+pytest-django
+pytest-env
+mock
+factory-boy
+parameterized
+ipython
+freezegun
+tox
+
+# lint
+flake8
+flake8-quotes
+black
+isort
