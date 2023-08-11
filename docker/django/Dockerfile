@@ -1,5 +1,5 @@
 FROM ubuntu:22.04
-ARG USER_PASSWORD
+ARG USER_PASSWORD="default"
 ARG PY_VERSION="3.11.4"
 ARG APP_DATA="./apps/requirements.txt"
 
