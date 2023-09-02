@@ -11,8 +11,16 @@ SECRET_KEY = "django-insecure-&up(cysg7@c@fbs3r#^*((ya(t+qv%*43t+h@k$#ao$l6de!8f
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost"]
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_ALLOW_METHODS = [
+    "OPTIONS",
+    "GET",
+    "POST",
+    "PATCH",
+    "DELETE",
+]
 
 INSTALLED_APPS = [
     "src.apps.AdminConfig",
@@ -25,6 +33,7 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "allauth",
     "allauth.account",
+    "corsheaders",
     "dj_rest_auth.registration",
     "drf_spectacular",
     "src.accounts",
@@ -39,6 +48,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "src.middleware.ThreadLocalUserMiddleware",
 ]
 
