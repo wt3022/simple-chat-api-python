@@ -3,7 +3,7 @@
 ## 環境構築
 ```
 cp project.env .env
-docker-compose up -d
+docker compose up -d
 ```
 
 ```
@@ -22,4 +22,4 @@ develop_tools/load_fixtures.sh
 python manage.py runserver
 ```
 
-admin画面は`http://localhost:8008/api-admin`で確認可能です。
+admin画面は`http://localhost:8008/api-admin`で確認可能
