@@ -3,6 +3,7 @@
 ## 環境構築
 ```
 cp project.env .env
+docker compose build
 docker compose up -d
 ```
 
