@@ -42,6 +42,5 @@ class AdminSiteSettingMixin:
         return app_list
 
 
-# デフォルトの Admin サイト
 class AdminSite(AdminSiteSettingMixin, DefaultAdminSite):
     pass

@@ -5,7 +5,6 @@ from src import env
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 SECRET_KEY = "django-insecure-&up(cysg7@c@fbs3r#^*((ya(t+qv%*43t+h@k$#ao$l6de!8f"
 
@@ -36,6 +35,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "dj_rest_auth.registration",
     "drf_spectacular",
+    "django_filters",
     "src.accounts",
     "src.chats",
 ]
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "corsheaders.middleware.CorsMiddleware",
-    "src.middleware.ThreadLocalUserMiddleware",
+    "django_currentuser.middleware.ThreadLocalUserMiddleware",
 ]
 
 ROOT_URLCONF = "src.urls"
@@ -127,6 +127,12 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 100,
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
 }
 REST_AUTH = {
     "LOGIN_SERIALIZER": "src.auth.serializers.LoginSerializer",
