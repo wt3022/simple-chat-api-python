@@ -1,9 +1,9 @@
 from django.db import models
+from django_currentuser.db.models import CurrentUserField
 
-from src.utils.models import CurrentUserField
+from src.utils.models import TimeStampedModel
 
 
-class ChatMassage(models.Model):
+class ChatMessage(TimeStampedModel):
     text = models.TextField("テキスト", max_length=2048)
-    created_at = models.DateTimeField("作成日時", auto_now=True)
-    created_by = CurrentUserField(verbose_name="投稿者")
+    created_by = CurrentUserField(verbose_name="投稿者", on_update=True)
