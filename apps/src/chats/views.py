@@ -33,10 +33,8 @@ class ChatMessageViewSet(ListModelMixin, CreateModelMixin, GenericViewSet):
         if not client_latest_timestamp:
             raise ValidationError({"latestTimestamp": "この値は必須です。"})
 
-        timeout = env.LONG_POLLING_TIMEOUT_SECONDS
-        start_time = timezone.localtime()
-
-        while (timezone.localtime() - start_time).seconds <= timeout:
+        loop_start_time = timezone.localtime()
+        while (timezone.localtime() - loop_start_time).seconds <= env.LONG_POLLING_TIMEOUT_SECONDS:
             queryset = get_new_messages(client_latest_timestamp)
             if queryset.exists():
                 serializer = self.get_serializer(self.paginate_queryset(queryset), many=True)
