@@ -1,12 +1,20 @@
 # simple-chat-api-python
 
 ## 環境構築
+コンテナの起動
+
+初回のみ
 ```
 cp project.env .env
+```
+
+imageのbuildとコンテナの立ち上げ
+```
 docker compose build
 docker compose up -d
 ```
 
+コンテナの中にアクセス
 ```
 docker compose exec django_app bash
 ```
@@ -23,4 +31,4 @@ develop_tools/load_fixtures.sh
 python manage.py runserver
 ```
 
-admin画面は`http://localhost:8008/api-admin`で確認可能
+admin画面は`http://localhost:8008/api-admin/`で確認可能
