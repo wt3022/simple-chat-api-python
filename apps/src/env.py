@@ -18,6 +18,9 @@ DB = _DatabaseValues(
     port=os.getenv("DB_PORT"),
 )
 
+LONG_POLLING_TIMEOUT_SECONDS=int(os.getenv("LONG_POLLING_TIMEOUT_SECONDS"))
+LONG_POLLING_LOOP_DELAY_SECONDS=int(os.getenv("LONG_POLLING_LOOP_DELAY_SECONDS"))
+
 
 def __getattr__(x):
     return os.getenv(x, None)
