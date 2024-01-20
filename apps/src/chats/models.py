@@ -7,3 +7,4 @@ from src.utils.models import TimeStampedModel
 class ChatMessage(TimeStampedModel):
     text = models.TextField("テキスト", max_length=2048)
     created_by = CurrentUserField(verbose_name="投稿者", on_update=True)
+

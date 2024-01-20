@@ -9,6 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = "django-insecure-&up(cysg7@c@fbs3r#^*((ya(t+qv%*43t+h@k$#ao$l6de!8f"
 
 DEBUG = True
+SITE_ID = 1
 
 ALLOWED_HOSTS = ["*"]
 CORS_ORIGIN_ALLOW_ALL = True
