@@ -37,10 +37,8 @@ func main() {
 		WithExec([]string{"cp", "sample.env", ".env"}).
 		WithExec([]string{"pytest"})
 
-	result, err := django.Stdout(ctx)
-	if err == nil {
-		fmt.Println(result)
-	} else {
-		panic(err)
+	_, err = django.Stdout(ctx)
+	if err != nil {
+		fmt.Println(err)
 	}
 }
