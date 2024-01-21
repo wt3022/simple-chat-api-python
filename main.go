@@ -41,6 +41,6 @@ func main() {
 	if err == nil {
 		fmt.Println(result)
 	} else {
-		fmt.Println(err)
+		panic(err)
 	}
 }
