@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"dagger.io/dagger"
@@ -35,4 +36,6 @@ func main() {
 		WithExec([]string{"pip", "install", "-U", "-r", "requirements.txt"}).
 		WithExec([]string{"cp", "sample.env", ".env"}).
 		WithExec([]string{"pytest"})
+
+	fmt.Println("hgoehogehoge")
 }
