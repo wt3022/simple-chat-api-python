@@ -24,7 +24,7 @@ func main() {
 		WithEnvVariable("MYSQL_ROOT_PASSWORD", mysqlPassword).
 		AsService()
 
-	client.Container().
+	django := client.Container().
 		From("ghcr.io/wt3022/simple-chat-api-python/django:0.1").
 		WithDirectory("./", client.Host().Directory("./apps"), dagger.ContainerWithDirectoryOpts{Owner: "django"}).
 		WithServiceBinding("db", mysql).
@@ -37,5 +37,10 @@ func main() {
 		WithExec([]string{"cp", "sample.env", ".env"}).
 		WithExec([]string{"pytest"})
 
-	fmt.Println("hgoehogehoge")
+	result, err := django.Stdout(ctx)
+	if err == nil {
+		fmt.Println(result)
+	} else {
+		fmt.Println(err)
+	}
 }
