@@ -20,7 +20,7 @@ from src.chats.services import get_new_messages
 
 @extend_schema_view(
     list=extend_schema(
-        parameters=[OpenApiParameter("latest_timestamp", OpenApiTypes.DATETIME, OpenApiParameter.QUERY, required=True)]
+        parameters=[OpenApiParameter("latest_timestamp", OpenApiTypes.DATETIME, OpenApiParameter.QUERY, required=False)]
     )
 )
 class ChatMessageViewSet(ListModelMixin, CreateModelMixin, GenericViewSet):
@@ -28,10 +28,11 @@ class ChatMessageViewSet(ListModelMixin, CreateModelMixin, GenericViewSet):
     serializer_class = ChatMessageSerializer
 
     def list(self, request, *args, **kwargs):
-        client_latest_timestamp = datetime.fromisoformat(request.query_params.get("latest_timestamp"))
-
+        client_latest_timestamp = request.query_params.get("latest_timestamp")
         if not client_latest_timestamp:
-            raise ValidationError({"latestTimestamp": "この値は必須です。"})
+            return super().list(request, *args, **kwargs)
+
+        client_latest_timestamp = datetime.fromisoformat(client_latest_timestamp)
 
         loop_start_time = timezone.localtime()
         while (timezone.localtime() - loop_start_time).seconds <= env.LONG_POLLING_TIMEOUT_SECONDS:
