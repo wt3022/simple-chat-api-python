@@ -127,6 +127,12 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
+    "DEFAULT_RENDERER_CLASSES": [
+        "djangorestframework_camel_case.render.CamelCaseJSONRenderer",
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "djangorestframework_camel_case.parser.CamelCaseJSONParser",
+    ],
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_FILTER_BACKENDS": [
         "django_filters.rest_framework.DjangoFilterBackend",
@@ -157,4 +163,12 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(hours=24),
     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(days=7),
     "ROTATE_REFRESH_TOKENS": True,
+}
+
+SPECTACULAR_SETTINGS = {
+    "POSTPROCESSING_HOOKS": [
+        "drf_spectacular.contrib.djangorestframework_camel_case.camelize_serializer_fields",
+    ],
+    "CAMELIZE_NAMES": True,
+    "COMPONENT_SPLIT_REQUEST": True
 }
